@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Airbus A320 Cockpit Model | Avionics First Year</title>
+  <meta name="description" content="Official feature page for the Airbus A320 Cockpit Model created by Avionics First Year—gallery, video, team roster, and downloadable project file.">
+
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#0B1022;
+      --card:#0C132B;
+      --text:#EAF0FF;
+      --muted:#B9C4E5;
+      --line:rgba(255,255,255,.10);
+      --glow:rgba(140, 98, 255, .35);
+      --glow2:rgba(0, 209, 255, .25);
+      --accent1:#8C62FF;
+      --accent2:#00D1FF;
+      --accent3:#FF4FD8;
+      --radius:18px;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --max: 1180px;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 450px at 20% 0%, rgba(140,98,255,.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(0,209,255,.18), transparent 60%),
+        radial-gradient(700px 420px at 60% 90%, rgba(255,79,216,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2) 60%, #050711);
+      overflow-x:hidden;
+    }
+
+    /* Subtle starfield */
+    .stars{
+      position:fixed; inset:0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.35) 50%, transparent 55%),
+        radial-gradient(1px 1px at 35% 65%, rgba(255,255,255,.25) 50%, transparent 55%),
+        radial-gradient(1px 1px at 72% 18%, rgba(255,255,255,.22) 50%, transparent 55%),
+        radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,.18) 50%, transparent 55%),
+        radial-gradient(1px 1px at 55% 35%, rgba(255,255,255,.24) 50%, transparent 55%),
+        radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,.15) 50%, transparent 55%);
+      opacity:.55;
+      pointer-events:none;
+      animation: drift 18s linear infinite;
+      mix-blend-mode: screen;
+    }
+    @keyframes drift{0%{transform:translateY(0);}100%{transform:translateY(-24px);}}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:rgba(7,10,18,.55);
+      backdrop-filter: blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav .inner{
+      max-width:var(--max);
+      margin:auto;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:var(--text);
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.5), transparent 60%),
+        linear-gradient(135deg, var(--accent1), var(--accent2));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 12px 30px rgba(140,98,255,.25);
+    }
+    .brand .title{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brand .title b{font-size:14px; letter-spacing:.2px;}
+    .brand .title span{font-size:12px; color:var(--muted);}
+
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .navlinks a{
+      color:var(--muted);
+      text-decoration:none;
+      font-size:13px;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+    .navlinks a:hover{
+      color:var(--text);
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+
+    /* Layout helpers */
+    .wrap{max-width:var(--max); margin:auto; padding: 0 18px;}
+    section{padding: 78px 0;}
+    .grid{display:grid; gap:18px;}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 72px 0 44px;
+      overflow:hidden;
+    }
+    .hero .grid{
+      grid-template-columns: 1.2fr .8fr;
+      align-items:center;
+      gap:22px;
+    }
+    @media (max-width: 940px){
+      .hero .grid{grid-template-columns:1fr; gap:18px;}
+    }
+
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      padding:8px 10px; border-radius:999px;
+      width:fit-content;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:linear-gradient(135deg, var(--accent2), var(--accent1));
+      box-shadow: 0 0 18px rgba(0,209,255,.35);
+    }
+
+    h1{
+      margin-top:14px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height:1.02;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin-top:14px;
+      color:var(--muted);
+      max-width: 62ch;
+      font-size: 15px;
+      line-height:1.6;
+    }
+
+    .ctaRow{
+      margin-top:22px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      color:var(--text);
+      padding: 11px 14px;
+      border-radius: 14px;
+      font-weight:700;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      box-shadow: var(--shadow2);
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.20);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(140,98,255,.95), rgba(0,209,255,.85));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 22px 60px rgba(140,98,255,.18);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(140,98,255,1), rgba(0,209,255,.95));
+    }
+    .pillRow{
+      margin-top:18px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Hero visual */
+    .panel{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 360px;
+    }
+    .panel .topbar{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      background: rgba(0,0,0,.12);
+    }
+    .lights{display:flex; gap:6px;}
+    .light{width:10px; height:10px; border-radius:50%; opacity:.8;}
+    .light.r{background:#ff5f56;}
+    .light.y{background:#ffbd2e;}
+    .light.g{background:#27c93f;}
+    .status{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; color:var(--muted);
+    }
+    .status .pulse{
+      width:8px; height:8px; border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 16px rgba(0,209,255,.35);
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1); opacity:.75}
+      50%{transform:scale(1.45); opacity:1}
+    }
+
+    .panel .content{
+      padding: 16px;
+      display:grid;
+      gap:14px;
+    }
+
+    /* “Cockpit” SVG box */
+    .cockpitArt{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(500px 280px at 50% 15%, rgba(140,98,255,.18), transparent 60%),
+        radial-gradient(380px 260px at 30% 80%, rgba(0,209,255,.14), transparent 60%),
+        rgba(0,0,0,.15);
+      overflow:hidden;
+      position:relative;
+      height: 240px;
+    }
+    .parallax{
+      position:absolute; inset:-20px;
+      transform: translate3d(0,0,0);
+      transition: transform .2s ease-out;
+      pointer-events:none;
+      opacity:.95;
+    }
+    .caption{
+      position:absolute; left:12px; bottom:12px;
+      font-size:12px; color:var(--muted);
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 10px; border-radius: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .miniStats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 520px){ .miniStats{grid-template-columns:1fr;} }
+
+    .stat{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding:12px;
+    }
+    .stat .n{
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing:-.4px;
+    }
+    .stat .t{color:var(--muted); font-size:12px; margin-top:4px;}
+
+    /* Cards */
+    .sectionTitle{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
+      margin-bottom: 18px;
+    }
+    .sectionTitle h2{
+      font-size: 24px;
+      letter-spacing:-.3px;
+    }
+    .sectionTitle p{
+      color:var(--muted);
+      max-width: 70ch;
+      font-size: 14px;
+      line-height:1.6;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 160px at 20% 0%, var(--glow), transparent 60%),
+                  radial-gradient(500px 180px at 90% 0%, var(--glow2), transparent 60%);
+      opacity:.25;
+      pointer-events:none;
+    }
+    .card > *{position:relative;}
+    .card h3{
+      font-size: 16px;
+      margin-bottom: 8px;
+      letter-spacing:-.2px;
+    }
+    .card p{
+      color:var(--muted);
+      font-size: 13px;
+      line-height:1.6;
+    }
+    .tagline{
+      margin-top:10px;
+      display:inline-flex;
+      font-size:12px;
+      color:rgba(234,240,255,.92);
+      padding:7px 9px;
+      border-radius: 999px;
+      background: rgba(140,98,255,.12);
+      border: 1px solid rgba(140,98,255,.25);
+    }
+    @media (max-width: 980px){ .card{grid-column: span 6;} }
+    @media (max-width: 620px){ .card{grid-column: span 12;} }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .shot{
+      grid-column: span 4;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      cursor:pointer;
+      position:relative;
+      min-height: 190px;
+      transition: transform .16s ease, border-color .2s ease, background .2s ease;
+      box-shadow: var(--shadow2);
+    }
+    .shot:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05);}
+    .shot img{
+      width:100%; height: 100%;
+      object-fit: cover;
+      display:block;
+      filter:saturate(1.02) contrast(1.02);
+      transform: scale(1.02);
+    }
+    .shot .label{
+      position:absolute; left:10px; bottom:10px;
+      font-size:12px;
+      color:var(--text);
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.14);
+      padding:8px 10px;
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      max-width: calc(100% - 20px);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 980px){ .shot{grid-column: span 6;} }
+    @media (max-width: 620px){ .shot{grid-column: span 12;} }
+
+    /* Modal */
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      z-index:80;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(10px);
+      padding: 18px;
+    }
+    .modal.open{display:grid;}
+    .modalBox{
+      width:min(980px, 100%);
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,15,30,.88);
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .modalTop{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .modalTop .mTitle{
+      font-size:13px; color:var(--muted);
+      overflow:hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .iconBtn{
+      border:none;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--text);
+      padding: 9px 10px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .iconBtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.20);}
+    .modalImg{
+      width:100%;
+      max-height: 72vh;
+      object-fit: contain;
+      background: rgba(0,0,0,.15);
+      display:block;
+    }
+    .modalFooter{
+      padding: 12px 14px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content: space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Timeline */
+    .timeline{display:grid; gap: 12px;}
+    .step{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      box-shadow: var(--shadow2);
+    }
+    .badge{
+      border-radius: 16px;
+      padding: 10px 12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.14);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing:.2px;
+      font-size: 12px;
+      align-self:start;
+    }
+    .step h4{font-size: 14px; margin-bottom: 6px;}
+    .step p{color:var(--muted); font-size:13px; line-height:1.6;}
+    @media (max-width: 720px){ .step{grid-template-columns:1fr;} .badge{text-align:left;} }
+
+    /* NEW: Team Roster Grid */
+    .roster{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .teamCard{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow2);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .teamCard::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(140,98,255,.22), transparent 60%),
+        radial-gradient(520px 240px at 90% 0%, rgba(0,209,255,.16), transparent 60%);
+      opacity:.22;
+      pointer-events:none;
+    }
+    .teamCard > *{position:relative;}
+    .teamHeader{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      margin-bottom: 10px;
+    }
+    .teamHeader h3{font-size:16px; letter-spacing:-.2px;}
+    .teamBadge{
+      font-size:12px;
+      color: rgba(234,240,255,.95);
+      padding:7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .teamCard p{color:var(--muted); font-size:13px; line-height:1.6;}
+    .roleList{
+      margin-top: 12px;
+      display:grid;
+      gap:10px;
+    }
+    .role{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+      padding: 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .role .ico{
+      width:34px; height:34px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      flex: 0 0 auto;
+    }
+    .role b{display:block; font-size:13px; margin-bottom:2px;}
+    .role span{display:block; font-size:12px; color:var(--muted); line-height:1.5;}
+    @media (max-width: 780px){ .teamCard{grid-column: span 12;} }
+
+    /* NEW: Video section */
+    .videoGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 940px){ .videoGrid{grid-template-columns:1fr;} }
+
+    .videoCard{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .videoTop{
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      background: rgba(0,0,0,.12);
+    }
+    .videoTop b{font-size:13px;}
+    .videoTop span{font-size:12px; color:var(--muted);}
+    video{
+      width:100%;
+      height:auto;
+      display:block;
+      background: rgba(0,0,0,.25);
+    }
+    .videoNote{
+      padding: 12px 14px 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+      border-top:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding: 34px 0 46px;
+      background: rgba(0,0,0,.18);
+    }
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .foot p{color:var(--muted); font-size:13px; line-height:1.6; max-width:70ch;}
+    .tiny{
+      margin-top:10px;
+      font-size: 12px;
+      color: rgba(185,196,229,.85);
+      opacity:.85;
+    }
+
+    /* Reveal on scroll */
+    .reveal{
+      opacity:0;
+      transform: translateY(12px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Utility */
+    .divider{height:1px; background: rgba(255,255,255,.10); margin: 14px 0 0;}
+    .note{font-size:12px; color: var(--muted); margin-top: 10px;}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 3px 6px;
+      border-radius: 8px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(234,240,255,.95);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">
+          <b>A320 Cockpit Model</b>
+          <span>Avionics First Year Project</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#features">Highlights</a>
+        <a href="#team">Team</a>
+        <a href="#video">Video</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#build">Build Story</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="wrap">
+      <div class="grid">
+        <div class="reveal">
+          <div class="kicker"><span class="dot"></span> Aircraft-inspired visuals • Interactive gallery • Smooth animations</div>
+          <h1>Airbus A320 Cockpit Model</h1>
+          <p class="sub">
+            A student-built cockpit model designed to showcase cockpit layout, instrument familiarity, and avionics-inspired craftsmanship.
+            Built by <b>Avionics First Year</b> for exhibits, demonstrations, and hands-on learning.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#gallery" aria-label="View gallery">
+              <span aria-hidden="true">✈️</span> View Gallery
+            </a>
+
+            <a class="btn" href="#team" aria-label="View team roster">
+              <span aria-hidden="true">👥</span> Team Roster
+            </a>
+
+            <!-- NEW: Downloadable project button -->
+            <a class="btn" href="assets/A320-Cockpit-Project.pdf" download aria-label="Download project file">
+              <span aria-hidden="true">⬇️</span> Download Project File
+            </a>
+
+            <button class="btn" id="playTour" type="button" aria-label="Play quick tour">
+              <span aria-hidden="true">▶</span> Quick Tour
+            </button>
+          </div>
+
+          <div class="pillRow">
+            <span class="pill">Model Build & Layout</span>
+            <span class="pill">Exhibit-ready</span>
+            <span class="pill">Avionics-inspired</span>
+          </div>
+
+          <p class="note">
+            Put your PDF brochure in <span class="kbd">/assets</span> as <span class="kbd">A320-Cockpit-Project.pdf</span> (you can rename in the code).
+          </p>
+        </div>
+
+        <!-- HERO VISUAL PANEL -->
+        <div class="panel reveal" id="heroPanel">
+          <div class="topbar">
+            <div class="lights" aria-hidden="true">
+              <div class="light r"></div><div class="light y"></div><div class="light g"></div>
+            </div>
+            <div class="status"><span class="pulse"></span> SYSTEM READY • A320 MODEL</div>
+          </div>
+
+          <div class="content">
+            <div class="cockpitArt" id="cockpitArt" aria-label="Stylized cockpit illustration">
+              <!-- inline SVG (no external assets needed) -->
+              <svg class="parallax" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="g1" x1="80" y1="40" x2="820" y2="480" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#8C62FF" stop-opacity="0.55"/>
+                    <stop offset="0.55" stop-color="#00D1FF" stop-opacity="0.30"/>
+                    <stop offset="1" stop-color="#FF4FD8" stop-opacity="0.18"/>
+                  </linearGradient>
+                  <linearGradient id="g2" x1="450" y1="70" x2="450" y2="460">
+                    <stop stop-color="white" stop-opacity="0.10"/>
+                    <stop offset="1" stop-color="white" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+
+                <path d="M90 150 C220 30, 680 30, 810 150 L810 360 C680 470, 220 470, 90 360 Z"
+                      fill="url(#g2)" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+                <path d="M140 290 C260 230, 640 230, 760 290 L740 360 C620 420, 280 420, 160 360 Z"
+                      fill="rgba(0,0,0,0.28)" stroke="rgba(255,255,255,0.10)"/>
+                <path d="M190 320 C300 270, 600 270, 710 320 L690 430 C585 470, 315 470, 210 430 Z"
+                      fill="rgba(12,19,43,0.65)" stroke="rgba(255,255,255,0.12)"/>
+
+                <g opacity="0.95">
+                  <rect x="250" y="335" width="120" height="78" rx="10" fill="rgba(0,209,255,0.16)" stroke="rgba(0,209,255,0.25)"/>
+                  <rect x="390" y="335" width="120" height="78" rx="10" fill="rgba(140,98,255,0.14)" stroke="rgba(140,98,255,0.25)"/>
+                  <rect x="530" y="335" width="120" height="78" rx="10" fill="rgba(255,79,216,0.10)" stroke="rgba(255,79,216,0.22)"/>
+                  <path d="M262 352 H358" stroke="rgba(255,255,255,0.22)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M262 365 H332" stroke="rgba(255,255,255,0.18)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M402 352 H498" stroke="rgba(255,255,255,0.20)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M402 366 H474" stroke="rgba(255,255,255,0.16)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M542 352 H638" stroke="rgba(255,255,255,0.18)" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M542 366 H612" stroke="rgba(255,255,255,0.14)" stroke-width="3" stroke-linecap="round"/>
+                </g>
+
+                <path d="M430 410 C448 398, 452 398, 470 410 L492 508 H408 Z"
+                      fill="rgba(0,0,0,0.30)" stroke="rgba(255,255,255,0.10)"/>
+
+                <path d="M140 150 C260 60, 640 60, 760 150" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+
+                <g opacity="0.6">
+                  <circle cx="220" cy="312" r="3" fill="rgba(0,209,255,0.7)"/>
+                  <circle cx="680" cy="312" r="3" fill="rgba(140,98,255,0.7)"/>
+                  <circle cx="450" cy="300" r="3" fill="rgba(255,79,216,0.65)"/>
+                </g>
+              </svg>
+
+              <div class="caption">Cockpit overview • Replace with your real images + video below</div>
+            </div>
+
+            <div class="miniStats">
+              <div class="stat">
+                <div class="n" data-count="2">0</div>
+                <div class="t">Teams (AAET 1-A / 1-B)</div>
+              </div>
+              <div class="stat">
+                <div class="n" data-count="6">0</div>
+                <div class="t">Key sections showcased</div>
+              </div>
+              <div class="stat">
+                <div class="n" data-count="100">0</div>
+                <div class="t">Effort & pride (%)</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>About the Project</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          This Airbus A320 cockpit model is a hands-on representation created by Avionics First Year students.
+          It highlights cockpit layout familiarity, build discipline, and presentation flow—built for exhibits and learning.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Purpose</h3>
+          <p>
+            To demonstrate cockpit organization and guide visitors through key zones: instrument panel, overhead panel,
+            and center pedestal—explained in a clear, tour-friendly way.
+          </p>
+          <span class="tagline">Learning through building</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Craftsmanship</h3>
+          <p>
+            Built with careful measurement and alignment—aimed to look clean on camera and strong in real exhibit setup.
+          </p>
+          <span class="tagline">Presentation-ready finish</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Teamwork</h3>
+          <p>
+            Tasks were split by cockpit sections and system features—like real avionics teamwork, but student-powered.
+          </p>
+          <span class="tagline">Avionics First Year</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Project Highlights</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          A clean summary of what the model demonstrates—layout clarity, structure, realism details, and system features.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card reveal">
+          <h3>Instrument Panel</h3>
+          <p>
+            The main display area and panel segmentation—built for explanation: where the screens go, what a visitor should notice,
+            and how the cockpit looks “alive.”
+          </p>
+          <span class="tagline">Readable at a glance</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Overhead Panel & Center Pedestal</h3>
+          <p>
+            Key cockpit zones that complete the flight deck experience—positioning, visual balance, and “tour flow” clarity.
+          </p>
+          <span class="tagline">Cockpit zoning</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Structure / Base</h3>
+          <p>
+            The foundation that makes everything look and feel solid—durable for repeated exhibit use and clean for presentation.
+          </p>
+          <span class="tagline">Built to last</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Attendance + Voice Feature</h3>
+          <p>
+            A system component integrated into the instrument panel concept—supports interaction, guidance, and demonstration.
+          </p>
+          <span class="tagline">Interactive demo</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Lights & Visual Feedback</h3>
+          <p>
+            Lighting makes the cockpit feel “active,” improving realism and giving visitors an immediate wow factor.
+          </p>
+          <span class="tagline">Looks alive</span>
+        </div>
+
+        <div class="card reveal">
+          <h3>Tour-Friendly Presentation</h3>
+          <p>
+            Designed so a guide can explain in order: overview → panel zones → features → final reveal, without confusion.
+          </p>
+          <span class="tagline">Easy to explain</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: TEAM ROSTER GRID -->
+  <section id="team">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Team Roster</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          Clear responsibility mapping per section—so judges and visitors instantly understand who built what.
+          (You can add member names later.)
+        </p>
+      </div>
+
+      <div class="roster">
+        <!-- AAET 1-A -->
+        <div class="teamCard reveal">
+          <div class="teamHeader">
+            <h3>AAET 1-A</h3>
+            <span class="teamBadge">Systems & Controls</span>
+          </div>
+          <p>
+            Responsible for key cockpit modules that complete the flight deck feel, including controls and upper panel work.
+          </p>
+
+          <div class="roleList">
+            <div class="role">
+              <div class="ico" aria-hidden="true">🎛️</div>
+              <div>
+                <b>Center Pedestal</b>
+                <span>Layout, detailing, and placement for a clean cockpit control zone.</span>
+              </div>
+            </div>
+            <div class="role">
+              <div class="ico" aria-hidden="true">🛫</div>
+              <div>
+                <b>Overhead Panel</b>
+                <span>Upper panel build/visual organization to complete the cockpit silhouette.</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="note">
+            Optional: Add names under each responsibility later (e.g., “Lead / Assist / Documentation”).
+          </p>
+        </div>
+
+        <!-- AAET 1-B -->
+        <div class="teamCard reveal">
+          <div class="teamHeader">
+            <h3>AAET 1-B</h3>
+            <span class="teamBadge">Structure & Main Panel</span>
+          </div>
+          <p>
+            Responsible for the full structural build and the main instrument panel systems—ensuring the cockpit looks solid and “alive.”
+          </p>
+
+          <div class="roleList">
+            <div class="role">
+              <div class="ico" aria-hidden="true">🧱</div>
+              <div>
+                <b>Whole Structure / Base</b>
+                <span>Frame, stability, finishing—built durable for exhibit use and camera-ready angles.</span>
+              </div>
+            </div>
+            <div class="role">
+              <div class="ico" aria-hidden="true">🖥️</div>
+              <div>
+                <b>Instrument Panel</b>
+                <span>Panel zone layout + details for a realistic, presentation-friendly cockpit front view.</span>
+              </div>
+            </div>
+            <div class="role">
+              <div class="ico" aria-hidden="true">🗣️</div>
+              <div>
+                <b>Attendance + Voice System</b>
+                <span>Interactive feature integrated into the instrument panel concept (voice prompts / attendance flow).</span>
+              </div>
+            </div>
+            <div class="role">
+              <div class="ico" aria-hidden="true">💡</div>
+              <div>
+                <b>Lights & Indicators</b>
+                <span>Lighting effects that make the instrument panel feel active and immersive.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards" style="margin-top:14px;">
+        <div class="card reveal" style="grid-column: span 12;">
+          <h3>Want to add student names?</h3>
+          <p>
+            You can list members under each team like:
+            <span class="kbd">Lead</span>, <span class="kbd">Assembly</span>, <span class="kbd">Wiring</span>,
+            <span class="kbd">Documentation</span>, <span class="kbd">Presenter</span>.
+            If you paste the names, I’ll format it nicely (no clutter).
+          </p>
+          <span class="tagline">Clean & professional roster</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: VIDEO SECTION -->
+  <section id="video">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Video Showcase</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          Add an offline video tour of the cockpit model. This works even without internet.
+          Put your file in <span class="kbd">/assets</span>.
+        </p>
+      </div>
+
+      <div class="videoGrid">
+        <div class="videoCard reveal">
+          <div class="videoTop">
+            <b>🎥 A320 Cockpit Walkthrough</b>
+            <span>Offline-ready</span>
+          </div>
+
+          <!-- Put your video at assets/a320-tour.mp4 -->
+          <video controls playsinline preload="metadata" poster="assets/a320-poster.jpg">
+            <source src="assets/a320-tour.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <div class="videoNote">
+            <b>Setup:</b> Add <span class="kbd">assets/a320-tour.mp4</span> (your video) and optional
+            <span class="kbd">assets/a320-poster.jpg</span> (thumbnail image).
+            <br><br>
+            Tip: Record in landscape, 1080p if possible, then do a slow pan: front view → overhead → pedestal → lights/voice demo.
+          </div>
+        </div>
+
+        <div class="cards" style="gap:14px;">
+          <div class="card reveal" style="grid-column: span 12;">
+            <h3>Suggested video script (simple but premium)</h3>
+            <p>
+              “Welcome to our Airbus A320 Cockpit Model. This project was created by Avionics First Year.
+              We will show the instrument panel, overhead panel, and center pedestal, then demonstrate our lights and voice/attendance feature.”
+            </p>
+            <span class="tagline">Good for judges</span>
+          </div>
+
+          <div class="card reveal" style="grid-column: span 12;">
+            <h3>Downloadable project file</h3>
+            <p>
+              Add your brochure / documentation as:
+              <span class="kbd">assets/A320-Cockpit-Project.pdf</span>.
+              Visitors can download it using the button on top.
+            </p>
+            <span class="tagline">Brochure-ready</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Gallery</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          Replace the images in <span class="kbd">/assets</span>. Keep filenames for automatic update.
+          Click any photo to open full view.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="shot reveal" data-full="assets/a320-1.jpg" data-caption="Cockpit Front View">
+          <img src="assets/a320-1.jpg" alt="Cockpit Front View"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-1.jpg in /assets</text></svg>';">
+          <div class="label">Cockpit Front View</div>
+        </div>
+
+        <div class="shot reveal" data-full="assets/a320-2.jpg" data-caption="Instrument Panel Close-up">
+          <img src="assets/a320-2.jpg" alt="Instrument Panel Close-up"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-2.jpg in /assets</text></svg>';">
+          <div class="label">Instrument Panel Close-up</div>
+        </div>
+
+        <div class="shot reveal" data-full="assets/a320-3.jpg" data-caption="Center Pedestal / Controls">
+          <img src="assets/a320-3.jpg" alt="Center Pedestal / Controls"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-3.jpg in /assets</text></svg>';">
+          <div class="label">Center Pedestal / Controls</div>
+        </div>
+
+        <div class="shot reveal" data-full="assets/a320-4.jpg" data-caption="Overhead Panel / Upper View">
+          <img src="assets/a320-4.jpg" alt="Overhead Panel / Upper View"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-4.jpg in /assets</text></svg>';">
+          <div class="label">Overhead Panel / Upper View</div>
+        </div>
+
+        <div class="shot reveal" data-full="assets/a320-5.jpg" data-caption="Build Process / Materials">
+          <img src="assets/a320-5.jpg" alt="Build Process / Materials"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-5.jpg in /assets</text></svg>';">
+          <div class="label">Build Process / Materials</div>
+        </div>
+
+        <div class="shot reveal" data-full="assets/a320-6.jpg" data-caption="Final Presentation Setup">
+          <img src="assets/a320-6.jpg" alt="Final Presentation Setup"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-6.jpg in /assets</text></svg>';">
+          <div class="label">Final Presentation Setup</div>
+        </div>
+      </div>
+
+      <p class="note reveal" style="margin-top:14px;">
+        Keyboard: <span class="kbd">Esc</span> closes image • <span class="kbd">←</span>/<span class="kbd">→</span> navigates
+      </p>
+    </div>
+  </section>
+
+  <!-- BUILD STORY -->
+  <section id="build">
+    <div class="wrap">
+      <div class="sectionTitle reveal">
+        <div>
+          <h2>Build Story</h2>
+          <div class="divider"></div>
+        </div>
+        <p>
+          A clean, judge-friendly timeline (edit the text to match your actual process).
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="step reveal">
+          <div class="badge">PHASE 01</div>
+          <div>
+            <h4>Planning & Layout</h4>
+            <p>
+              Studied cockpit references, decided the model layout, and planned the presentation flow (what visitors see first).
+            </p>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">PHASE 02</div>
+          <div>
+            <h4>Structure Build</h4>
+            <p>
+              Built the frame and base with stability checks so the cockpit stays solid during exhibit use.
+            </p>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">PHASE 03</div>
+          <div>
+            <h4>Panels & Features</h4>
+            <p>
+              Added panel zones and system features (instrument panel, overhead, pedestal, and lights/voice/attendance elements).
+            </p>
+          </div>
+        </div>
+
+        <div class="step reveal">
+          <div class="badge">PHASE 04</div>
+          <div>
+            <h4>Final Setup & Presentation</h4>
+            <p>
+              Prepared the cockpit for display: angles, lighting, labeling (if used), and guided explanation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="brand" href="#top">
+            <div class="logo" aria-hidden="true"></div>
+            <div class="title">
+              <b>A320 Cockpit Model</b>
+              <span>Avionics First Year</span>
+            </div>
+          </a>
+          <p class="tiny">
+            © <span id="year"></span> • Airbus A320 Cockpit Model • Created by Avionics First Year
+          </p>
+        </div>
+
+        <p>
+          Want it even cleaner and “premium”? Add a PDF brochure + a short 30–60s walkthrough video (already supported above).
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- IMAGE MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Image viewer">
+      <div class="modalTop">
+        <div class="mTitle" id="mTitle">Image</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button class="iconBtn" id="prevBtn" type="button" aria-label="Previous image">←</button>
+          <button class="iconBtn" id="nextBtn" type="button" aria-label="Next image">→</button>
+          <button class="iconBtn" id="closeBtn" type="button" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <img class="modalImg" id="mImg" src="" alt="Expanded view">
+      <div class="modalFooter">
+        <span id="mCap">Caption</span>
+        <span>Tip: Press <span class="kbd">Esc</span> to close</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Helpers =====
+    const $ = (q, el=document) => el.querySelector(q);
+    const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+
+    // ===== Year =====
+    $("#year").textContent = new Date().getFullYear();
+
+    // ===== Reveal on scroll =====
+    const revealEls = $$(".reveal");
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add("show");
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(el=>io.observe(el));
+
+    // ===== Hero parallax =====
+    const art = $("#cockpitArt");
+    const para = art ? art.querySelector(".parallax") : null;
+    if(art && para){
+      art.addEventListener("mousemove", (ev)=>{
+        const r = art.getBoundingClientRect();
+        const x = (ev.clientX - r.left)/r.width - 0.5;
+        const y = (ev.clientY - r.top)/r.height - 0.5;
+        para.style.transform = `translate(${x*10}px, ${y*10}px) scale(1.02)`;
+      });
+      art.addEventListener("mouseleave", ()=>{
+        para.style.transform = `translate(0px, 0px) scale(1.02)`;
+      });
+    }
+
+    // ===== Count-up stats when hero panel appears =====
+    const stats = $$("[data-count]");
+    const countUp = (el)=>{
+      const target = Number(el.getAttribute("data-count") || "0");
+      const dur = 900;
+      const start = performance.now();
+      const from = 0;
+
+      const step = (t)=>{
+        const p = Math.min(1, (t-start)/dur);
+        const val = Math.round(from + (target-from)*p);
+        el.textContent = val.toString();
+        if(p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const heroPanel = $("#heroPanel");
+    if(heroPanel){
+      const io2 = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            stats.forEach(countUp);
+            io2.disconnect();
+          }
+        });
+      }, {threshold:0.35});
+      io2.observe(heroPanel);
+    }
+
+    // ===== Gallery modal (lightbox) =====
+    const shots = $$(".shot");
+    const modal = $("#modal");
+    const mImg = $("#mImg");
+    const mTitle = $("#mTitle");
+    const mCap = $("#mCap");
+    const closeBtn = $("#closeBtn");
+    const prevBtn = $("#prevBtn");
+    const nextBtn = $("#nextBtn");
+
+    let currentIndex = 0;
+
+    function openModal(idx){
+      currentIndex = idx;
+      const el = shots[currentIndex];
+      const full = el.getAttribute("data-full");
+      const cap = el.getAttribute("data-caption") || "Image";
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      mImg.src = full;
+      mImg.alt = cap;
+      mTitle.textContent = cap;
+      mCap.textContent = cap;
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      mImg.src = "";
+    }
+
+    function prev(){
+      const idx = (currentIndex - 1 + shots.length) % shots.length;
+      openModal(idx);
+    }
+
+    function next(){
+      const idx = (currentIndex + 1) % shots.length;
+      openModal(idx);
+    }
+
+    shots.forEach((el, i)=>{
+      el.addEventListener("click", ()=>openModal(i));
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    modal.addEventListener("click", (e)=>{
+      if(e.target === modal) closeModal();
+    });
+
+    window.addEventListener("keydown", (e)=>{
+      if(!modal.classList.contains("open")) return;
+      if(e.key === "Escape") closeModal();
+      if(e.key === "ArrowLeft") prev();
+      if(e.key === "ArrowRight") next();
+    });
+
+    // ===== Quick Tour =====
+    const tourBtn = $("#playTour");
+    const tourStops = ["#about", "#features", "#team", "#video", "#gallery", "#build"];
+    let touring = false;
+
+    tourBtn.addEventListener("click", async ()=>{
+      if(touring) return;
+      touring = true;
+      tourBtn.textContent = "⏸ Touring...";
+      for(const id of tourStops){
+        document.querySelector(id).scrollIntoView({behavior:"smooth", block:"start"});
+        await new Promise(r=>setTimeout(r, 1200));
+      }
+      tourBtn.textContent = "▶ Quick Tour";
+      touring = false;
+    });
+  </script>
+
+  <!--
+    ===== HOW TO USE =====
+    Create:
+      - index.html
+      - assets/
+    Add photos:
+      - a320-1.jpg ... a320-6.jpg
+    Add video:
+      - a320-tour.mp4
+      - (optional) a320-poster.jpg
+    Add brochure/PDF:
+      - A320-Cockpit-Project.pdf
+  -->
+</body>
+</html>
