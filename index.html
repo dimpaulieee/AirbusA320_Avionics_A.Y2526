@@ -10,7 +10,6 @@
     :root{
       --bg:#070A12;
       --bg2:#0B1022;
-      --card:#0C132B;
       --text:#EAF0FF;
       --muted:#B9C4E5;
       --line:rgba(255,255,255,.10);
@@ -38,7 +37,6 @@
       overflow-x:hidden;
     }
 
-    /* Subtle starfield */
     .stars{
       position:fixed; inset:0;
       background-image:
@@ -55,7 +53,6 @@
     }
     @keyframes drift{0%{transform:translateY(0);}100%{transform:translateY(-24px);}}
 
-    /* Top nav */
     .nav{
       position:sticky; top:0; z-index:50;
       background:rgba(7,10,18,.55);
@@ -82,9 +79,7 @@
         linear-gradient(135deg, var(--accent1), var(--accent2));
       box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 12px 30px rgba(140,98,255,.25);
     }
-    .brand .title{
-      display:flex; flex-direction:column; line-height:1.05;
-    }
+    .brand .title{display:flex; flex-direction:column; line-height:1.05;}
     .brand .title b{font-size:14px; letter-spacing:.2px;}
     .brand .title span{font-size:12px; color:var(--muted);}
 
@@ -104,12 +99,10 @@
       background:rgba(255,255,255,.04);
     }
 
-    /* Layout helpers */
     .wrap{max-width:var(--max); margin:auto; padding: 0 18px;}
     section{padding: 78px 0;}
     .grid{display:grid; gap:18px;}
 
-    /* Hero */
     .hero{
       position:relative;
       padding: 72px 0 44px;
@@ -181,13 +174,8 @@
       border: 1px solid rgba(255,255,255,.18);
       box-shadow: 0 22px 60px rgba(140,98,255,.18);
     }
-    .btn.primary:hover{
-      background: linear-gradient(135deg, rgba(140,98,255,1), rgba(0,209,255,.95));
-    }
-    .pillRow{
-      margin-top:18px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
+
+    .pillRow{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;}
     .pill{
       padding:8px 10px;
       border-radius:999px;
@@ -197,7 +185,6 @@
       background:rgba(255,255,255,.03);
     }
 
-    /* Hero visual */
     .panel{
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
@@ -229,18 +216,10 @@
       box-shadow: 0 0 16px rgba(0,209,255,.35);
       animation: pulse 1.2s ease-in-out infinite;
     }
-    @keyframes pulse{
-      0%,100%{transform:scale(1); opacity:.75}
-      50%{transform:scale(1.45); opacity:1}
-    }
+    @keyframes pulse{0%,100%{transform:scale(1); opacity:.75}50%{transform:scale(1.45); opacity:1}}
 
-    .panel .content{
-      padding: 16px;
-      display:grid;
-      gap:14px;
-    }
+    .panel .content{padding: 16px; display:grid; gap:14px;}
 
-    /* “Cockpit” SVG box */
     .cockpitArt{
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.10);
@@ -259,14 +238,6 @@
       pointer-events:none;
       opacity:.95;
     }
-    .caption{
-      position:absolute; left:12px; bottom:12px;
-      font-size:12px; color:var(--muted);
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.12);
-      padding:8px 10px; border-radius: 14px;
-      backdrop-filter: blur(10px);
-    }
 
     .miniStats{
       display:grid;
@@ -281,28 +252,16 @@
       border-radius: 16px;
       padding:12px;
     }
-    .stat .n{
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing:-.4px;
-    }
+    .stat .n{font-size: 20px; font-weight: 900; letter-spacing:-.4px;}
     .stat .t{color:var(--muted); font-size:12px; margin-top:4px;}
 
-    /* Cards */
     .sectionTitle{
       display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
       margin-bottom: 18px;
     }
-    .sectionTitle h2{
-      font-size: 24px;
-      letter-spacing:-.3px;
-    }
-    .sectionTitle p{
-      color:var(--muted);
-      max-width: 70ch;
-      font-size: 14px;
-      line-height:1.6;
-    }
+    .sectionTitle h2{font-size: 24px; letter-spacing:-.3px;}
+    .sectionTitle p{color:var(--muted); max-width: 70ch; font-size: 14px; line-height:1.6;}
+    .divider{height:1px; background: rgba(255,255,255,.10); margin: 14px 0 0;}
 
     .cards{
       display:grid;
@@ -328,16 +287,8 @@
       pointer-events:none;
     }
     .card > *{position:relative;}
-    .card h3{
-      font-size: 16px;
-      margin-bottom: 8px;
-      letter-spacing:-.2px;
-    }
-    .card p{
-      color:var(--muted);
-      font-size: 13px;
-      line-height:1.6;
-    }
+    .card h3{font-size: 16px; margin-bottom: 8px; letter-spacing:-.2px;}
+    .card p{color:var(--muted); font-size: 13px; line-height:1.6;}
     .tagline{
       margin-top:10px;
       display:inline-flex;
@@ -351,7 +302,6 @@
     @media (max-width: 980px){ .card{grid-column: span 6;} }
     @media (max-width: 620px){ .card{grid-column: span 12;} }
 
-    /* Gallery */
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -394,7 +344,6 @@
     @media (max-width: 980px){ .shot{grid-column: span 6;} }
     @media (max-width: 620px){ .shot{grid-column: span 12;} }
 
-    /* Modal */
     .modal{
       position:fixed; inset:0;
       display:none;
@@ -454,7 +403,6 @@
       flex-wrap:wrap;
     }
 
-    /* Timeline */
     .timeline{display:grid; gap: 12px;}
     .step{
       border-radius: 18px;
@@ -482,7 +430,7 @@
     .step p{color:var(--muted); font-size:13px; line-height:1.6;}
     @media (max-width: 720px){ .step{grid-template-columns:1fr;} .badge{text-align:left;} }
 
-    /* NEW: Team Roster Grid */
+    /* Team roster */
     .roster{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -523,11 +471,7 @@
       white-space:nowrap;
     }
     .teamCard p{color:var(--muted); font-size:13px; line-height:1.6;}
-    .roleList{
-      margin-top: 12px;
-      display:grid;
-      gap:10px;
-    }
+    .roleList{margin-top: 12px; display:grid; gap:10px;}
     .role{
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.10);
@@ -549,7 +493,7 @@
     .role span{display:block; font-size:12px; color:var(--muted); line-height:1.5;}
     @media (max-width: 780px){ .teamCard{grid-column: span 12;} }
 
-    /* NEW: Video section */
+    /* Video section */
     .videoGrid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -589,7 +533,6 @@
       background: rgba(0,0,0,.10);
     }
 
-    /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.10);
       padding: 34px 0 46px;
@@ -610,20 +553,13 @@
       opacity:.85;
     }
 
-    /* Reveal on scroll */
     .reveal{
       opacity:0;
       transform: translateY(12px);
       transition: opacity .55s ease, transform .55s ease;
     }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
-    }
+    .reveal.show{opacity:1; transform: translateY(0);}
 
-    /* Utility */
-    .divider{height:1px; background: rgba(255,255,255,.10); margin: 14px 0 0;}
-    .note{font-size:12px; color: var(--muted); margin-top: 10px;}
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 11px;
@@ -682,7 +618,6 @@
               <span aria-hidden="true">👥</span> Team Roster
             </a>
 
-            <!-- NEW: Downloadable project button -->
             <a class="btn" href="assets/A320-Cockpit-Project.pdf" download aria-label="Download project file">
               <span aria-hidden="true">⬇️</span> Download Project File
             </a>
@@ -697,10 +632,6 @@
             <span class="pill">Exhibit-ready</span>
             <span class="pill">Avionics-inspired</span>
           </div>
-
-          <p class="note">
-            Put your PDF brochure in <span class="kbd">/assets</span> as <span class="kbd">A320-Cockpit-Project.pdf</span> (you can rename in the code).
-          </p>
         </div>
 
         <!-- HERO VISUAL PANEL -->
@@ -714,7 +645,6 @@
 
           <div class="content">
             <div class="cockpitArt" id="cockpitArt" aria-label="Stylized cockpit illustration">
-              <!-- inline SVG (no external assets needed) -->
               <svg class="parallax" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                   <linearGradient id="g1" x1="80" y1="40" x2="820" y2="480" gradientUnits="userSpaceOnUse">
@@ -751,15 +681,7 @@
                       fill="rgba(0,0,0,0.30)" stroke="rgba(255,255,255,0.10)"/>
 
                 <path d="M140 150 C260 60, 640 60, 760 150" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
-
-                <g opacity="0.6">
-                  <circle cx="220" cy="312" r="3" fill="rgba(0,209,255,0.7)"/>
-                  <circle cx="680" cy="312" r="3" fill="rgba(140,98,255,0.7)"/>
-                  <circle cx="450" cy="300" r="3" fill="rgba(255,79,216,0.65)"/>
-                </g>
               </svg>
-
-              <div class="caption">Cockpit overview • Replace with your real images + video below</div>
             </div>
 
             <div class="miniStats">
@@ -892,7 +814,7 @@
     </div>
   </section>
 
-  <!-- NEW: TEAM ROSTER GRID -->
+  <!-- TEAM -->
   <section id="team">
     <div class="wrap">
       <div class="sectionTitle reveal">
@@ -901,20 +823,18 @@
           <div class="divider"></div>
         </div>
         <p>
-          Clear responsibility mapping per section—so judges and visitors instantly understand who built what.
-          (You can add member names later.)
+          Responsibility mapping per section—so visitors instantly understand who built what.
         </p>
       </div>
 
       <div class="roster">
-        <!-- AAET 1-A -->
         <div class="teamCard reveal">
           <div class="teamHeader">
             <h3>AAET 1-A</h3>
             <span class="teamBadge">Systems & Controls</span>
           </div>
           <p>
-            Responsible for key cockpit modules that complete the flight deck feel, including controls and upper panel work.
+            Responsible for cockpit modules that complete the flight deck feel, including controls and upper panel work.
           </p>
 
           <div class="roleList">
@@ -933,13 +853,8 @@
               </div>
             </div>
           </div>
-
-          <p class="note">
-            Optional: Add names under each responsibility later (e.g., “Lead / Assist / Documentation”).
-          </p>
         </div>
 
-        <!-- AAET 1-B -->
         <div class="teamCard reveal">
           <div class="teamHeader">
             <h3>AAET 1-B</h3>
@@ -954,7 +869,7 @@
               <div class="ico" aria-hidden="true">🧱</div>
               <div>
                 <b>Whole Structure / Base</b>
-                <span>Frame, stability, finishing—built durable for exhibit use and camera-ready angles.</span>
+                <span>Frame, stability, finishing—durable for exhibit use and clean for presentation.</span>
               </div>
             </div>
             <div class="role">
@@ -968,7 +883,7 @@
               <div class="ico" aria-hidden="true">🗣️</div>
               <div>
                 <b>Attendance + Voice System</b>
-                <span>Interactive feature integrated into the instrument panel concept (voice prompts / attendance flow).</span>
+                <span>Interactive feature integrated into the instrument panel (voice prompts / attendance flow).</span>
               </div>
             </div>
             <div class="role">
@@ -981,23 +896,10 @@
           </div>
         </div>
       </div>
-
-      <div class="cards" style="margin-top:14px;">
-        <div class="card reveal" style="grid-column: span 12;">
-          <h3>Want to add student names?</h3>
-          <p>
-            You can list members under each team like:
-            <span class="kbd">Lead</span>, <span class="kbd">Assembly</span>, <span class="kbd">Wiring</span>,
-            <span class="kbd">Documentation</span>, <span class="kbd">Presenter</span>.
-            If you paste the names, I’ll format it nicely (no clutter).
-          </p>
-          <span class="tagline">Clean & professional roster</span>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- NEW: VIDEO SECTION -->
+  <!-- VIDEO -->
   <section id="video">
     <div class="wrap">
       <div class="sectionTitle reveal">
@@ -1006,8 +908,7 @@
           <div class="divider"></div>
         </div>
         <p>
-          Add an offline video tour of the cockpit model. This works even without internet.
-          Put your file in <span class="kbd">/assets</span>.
+          A quick walkthrough of the cockpit model.
         </p>
       </div>
 
@@ -1015,41 +916,35 @@
         <div class="videoCard reveal">
           <div class="videoTop">
             <b>🎥 A320 Cockpit Walkthrough</b>
-            <span>Offline-ready</span>
+            <span>Tour</span>
           </div>
 
-          <!-- Put your video at assets/a320-tour.mp4 -->
           <video controls playsinline preload="metadata" poster="assets/a320-poster.jpg">
             <source src="assets/a320-tour.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
 
           <div class="videoNote">
-            <b>Setup:</b> Add <span class="kbd">assets/a320-tour.mp4</span> (your video) and optional
-            <span class="kbd">assets/a320-poster.jpg</span> (thumbnail image).
-            <br><br>
-            Tip: Record in landscape, 1080p if possible, then do a slow pan: front view → overhead → pedestal → lights/voice demo.
+            Suggested shot: front view → overhead → pedestal → lights/voice demo.
           </div>
         </div>
 
         <div class="cards" style="gap:14px;">
           <div class="card reveal" style="grid-column: span 12;">
-            <h3>Suggested video script (simple but premium)</h3>
+            <h3>Project File</h3>
             <p>
-              “Welcome to our Airbus A320 Cockpit Model. This project was created by Avionics First Year.
-              We will show the instrument panel, overhead panel, and center pedestal, then demonstrate our lights and voice/attendance feature.”
+              Download the project brochure/documentation using the button in the hero section.
             </p>
-            <span class="tagline">Good for judges</span>
+            <span class="tagline">Downloadable</span>
           </div>
 
           <div class="card reveal" style="grid-column: span 12;">
-            <h3>Downloadable project file</h3>
+            <h3>Short narration (optional)</h3>
             <p>
-              Add your brochure / documentation as:
-              <span class="kbd">assets/A320-Cockpit-Project.pdf</span>.
-              Visitors can download it using the button on top.
+              “Welcome to our Airbus A320 Cockpit Model created by Avionics First Year. We will show the instrument panel,
+              overhead panel, and center pedestal, then demonstrate the lights and voice/attendance feature.”
             </p>
-            <span class="tagline">Brochure-ready</span>
+            <span class="tagline">Judge-friendly</span>
           </div>
         </div>
       </div>
@@ -1064,53 +959,40 @@
           <h2>Gallery</h2>
           <div class="divider"></div>
         </div>
-        <p>
-          Replace the images in <span class="kbd">/assets</span>. Keep filenames for automatic update.
-          Click any photo to open full view.
-        </p>
+        <p>Click any photo to open full view.</p>
       </div>
 
       <div class="gallery">
         <div class="shot reveal" data-full="assets/a320-1.jpg" data-caption="Cockpit Front View">
-          <img src="assets/a320-1.jpg" alt="Cockpit Front View"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-1.jpg in /assets</text></svg>';">
+          <img src="assets/a320-1.jpg" alt="Cockpit Front View">
           <div class="label">Cockpit Front View</div>
         </div>
 
         <div class="shot reveal" data-full="assets/a320-2.jpg" data-caption="Instrument Panel Close-up">
-          <img src="assets/a320-2.jpg" alt="Instrument Panel Close-up"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-2.jpg in /assets</text></svg>';">
+          <img src="assets/a320-2.jpg" alt="Instrument Panel Close-up">
           <div class="label">Instrument Panel Close-up</div>
         </div>
 
         <div class="shot reveal" data-full="assets/a320-3.jpg" data-caption="Center Pedestal / Controls">
-          <img src="assets/a320-3.jpg" alt="Center Pedestal / Controls"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-3.jpg in /assets</text></svg>';">
+          <img src="assets/a320-3.jpg" alt="Center Pedestal / Controls">
           <div class="label">Center Pedestal / Controls</div>
         </div>
 
         <div class="shot reveal" data-full="assets/a320-4.jpg" data-caption="Overhead Panel / Upper View">
-          <img src="assets/a320-4.jpg" alt="Overhead Panel / Upper View"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-4.jpg in /assets</text></svg>';">
+          <img src="assets/a320-4.jpg" alt="Overhead Panel / Upper View">
           <div class="label">Overhead Panel / Upper View</div>
         </div>
 
         <div class="shot reveal" data-full="assets/a320-5.jpg" data-caption="Build Process / Materials">
-          <img src="assets/a320-5.jpg" alt="Build Process / Materials"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-5.jpg in /assets</text></svg>';">
+          <img src="assets/a320-5.jpg" alt="Build Process / Materials">
           <div class="label">Build Process / Materials</div>
         </div>
 
         <div class="shot reveal" data-full="assets/a320-6.jpg" data-caption="Final Presentation Setup">
-          <img src="assets/a320-6.jpg" alt="Final Presentation Setup"
-            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22700%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230b1022%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23b9c4e5%22 font-family=%22Arial%22 font-size=%2240%22>Put a320-6.jpg in /assets</text></svg>';">
+          <img src="assets/a320-6.jpg" alt="Final Presentation Setup">
           <div class="label">Final Presentation Setup</div>
         </div>
       </div>
-
-      <p class="note reveal" style="margin-top:14px;">
-        Keyboard: <span class="kbd">Esc</span> closes image • <span class="kbd">←</span>/<span class="kbd">→</span> navigates
-      </p>
     </div>
   </section>
 
@@ -1122,9 +1004,7 @@
           <h2>Build Story</h2>
           <div class="divider"></div>
         </div>
-        <p>
-          A clean, judge-friendly timeline (edit the text to match your actual process).
-        </p>
+        <p>Timeline of how the cockpit model was built.</p>
       </div>
 
       <div class="timeline">
@@ -1132,9 +1012,7 @@
           <div class="badge">PHASE 01</div>
           <div>
             <h4>Planning & Layout</h4>
-            <p>
-              Studied cockpit references, decided the model layout, and planned the presentation flow (what visitors see first).
-            </p>
+            <p>Studied references, decided the layout, and planned the presentation flow.</p>
           </div>
         </div>
 
@@ -1142,9 +1020,7 @@
           <div class="badge">PHASE 02</div>
           <div>
             <h4>Structure Build</h4>
-            <p>
-              Built the frame and base with stability checks so the cockpit stays solid during exhibit use.
-            </p>
+            <p>Built the frame and base with stability checks for exhibit use.</p>
           </div>
         </div>
 
@@ -1152,19 +1028,15 @@
           <div class="badge">PHASE 03</div>
           <div>
             <h4>Panels & Features</h4>
-            <p>
-              Added panel zones and system features (instrument panel, overhead, pedestal, and lights/voice/attendance elements).
-            </p>
+            <p>Added panel zones and system features (lights, voice/attendance elements).</p>
           </div>
         </div>
 
         <div class="step reveal">
           <div class="badge">PHASE 04</div>
           <div>
-            <h4>Final Setup & Presentation</h4>
-            <p>
-              Prepared the cockpit for display: angles, lighting, labeling (if used), and guided explanation.
-            </p>
+            <h4>Final Setup</h4>
+            <p>Prepared the cockpit for display: angles, lighting, and guided explanation.</p>
           </div>
         </div>
       </div>
@@ -1189,7 +1061,7 @@
         </div>
 
         <p>
-          Want it even cleaner and “premium”? Add a PDF brochure + a short 30–60s walkthrough video (already supported above).
+          Airbus A320 Cockpit Model Project Showcase.
         </p>
       </div>
     </div>
@@ -1209,21 +1081,18 @@
       <img class="modalImg" id="mImg" src="" alt="Expanded view">
       <div class="modalFooter">
         <span id="mCap">Caption</span>
-        <span>Tip: Press <span class="kbd">Esc</span> to close</span>
+        <span>Press <span class="kbd">Esc</span> to close</span>
       </div>
     </div>
   </div>
 
   <script>
-    // ===== Helpers =====
     const $ = (q, el=document) => el.querySelector(q);
     const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
 
-    // ===== Year =====
     $("#year").textContent = new Date().getFullYear();
 
-    // ===== Reveal on scroll =====
-    const revealEls = $$(".reveal");
+    // Reveal
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -1232,9 +1101,9 @@
         }
       });
     }, {threshold: 0.12});
-    revealEls.forEach(el=>io.observe(el));
+    $$(".reveal").forEach(el=>io.observe(el));
 
-    // ===== Hero parallax =====
+    // Parallax
     const art = $("#cockpitArt");
     const para = art ? art.querySelector(".parallax") : null;
     if(art && para){
@@ -1249,23 +1118,19 @@
       });
     }
 
-    // ===== Count-up stats when hero panel appears =====
+    // Count-up
     const stats = $$("[data-count]");
     const countUp = (el)=>{
       const target = Number(el.getAttribute("data-count") || "0");
       const dur = 900;
       const start = performance.now();
-      const from = 0;
-
       const step = (t)=>{
         const p = Math.min(1, (t-start)/dur);
-        const val = Math.round(from + (target-from)*p);
-        el.textContent = val.toString();
+        el.textContent = String(Math.round(target*p));
         if(p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
     };
-
     const heroPanel = $("#heroPanel");
     if(heroPanel){
       const io2 = new IntersectionObserver((entries)=>{
@@ -1279,7 +1144,7 @@
       io2.observe(heroPanel);
     }
 
-    // ===== Gallery modal (lightbox) =====
+    // Gallery modal
     const shots = $$(".shot");
     const modal = $("#modal");
     const mImg = $("#mImg");
@@ -1296,7 +1161,6 @@
       const el = shots[currentIndex];
       const full = el.getAttribute("data-full");
       const cap = el.getAttribute("data-caption") || "Image";
-
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
       mImg.src = full;
@@ -1304,34 +1168,19 @@
       mTitle.textContent = cap;
       mCap.textContent = cap;
     }
-
     function closeModal(){
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
       mImg.src = "";
     }
+    function prev(){ openModal((currentIndex - 1 + shots.length) % shots.length); }
+    function next(){ openModal((currentIndex + 1) % shots.length); }
 
-    function prev(){
-      const idx = (currentIndex - 1 + shots.length) % shots.length;
-      openModal(idx);
-    }
-
-    function next(){
-      const idx = (currentIndex + 1) % shots.length;
-      openModal(idx);
-    }
-
-    shots.forEach((el, i)=>{
-      el.addEventListener("click", ()=>openModal(i));
-    });
-
+    shots.forEach((el, i)=> el.addEventListener("click", ()=>openModal(i)));
     closeBtn.addEventListener("click", closeModal);
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
-
-    modal.addEventListener("click", (e)=>{
-      if(e.target === modal) closeModal();
-    });
+    modal.addEventListener("click", (e)=>{ if(e.target === modal) closeModal(); });
 
     window.addEventListener("keydown", (e)=>{
       if(!modal.classList.contains("open")) return;
@@ -1340,11 +1189,10 @@
       if(e.key === "ArrowRight") next();
     });
 
-    // ===== Quick Tour =====
+    // Quick Tour
     const tourBtn = $("#playTour");
     const tourStops = ["#about", "#features", "#team", "#video", "#gallery", "#build"];
     let touring = false;
-
     tourBtn.addEventListener("click", async ()=>{
       if(touring) return;
       touring = true;
@@ -1357,19 +1205,5 @@
       touring = false;
     });
   </script>
-
-  <!--
-    ===== HOW TO USE =====
-    Create:
-      - index.html
-      - assets/
-    Add photos:
-      - a320-1.jpg ... a320-6.jpg
-    Add video:
-      - a320-tour.mp4
-      - (optional) a320-poster.jpg
-    Add brochure/PDF:
-      - A320-Cockpit-Project.pdf
-  -->
 </body>
 </html>
